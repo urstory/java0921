@@ -7,7 +7,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class RoleDAOImpl implements RoleDAO{
+	public RoleDAOImpl() {
+		System.out.println("RoleDaoImpl");
+	}
 
 	@Override
 	public int addRole(Role role) {
