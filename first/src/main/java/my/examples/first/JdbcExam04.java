@@ -1,5 +1,7 @@
 package my.examples.first;
 
+import java.util.List;
+
 public class JdbcExam04 {
 
 	public static void main(String[] args) {
@@ -16,6 +18,12 @@ public class JdbcExam04 {
 		if(role3 != null)
 			System.out.println(role3.getRoleId() + " , " + role3.getDescription());
 		
+		System.out.println("-----------------------------------");
+		List<Role> list = roleDao.getRoles();
+		for(Role role : list) {
+			System.out.println(role.getRoleId() + " , " + role.getDescription());
+			
+		}
 
 	}
 	

@@ -12,9 +12,7 @@ public class ExceptionTest01 {
 		}catch(ArithmeticException e){
 			System.out.println("0으로 나눌 수 없다.");
 		}
-
 	}
-
 }
 
 // 둘리가 작성하는 클래스 
