@@ -4,7 +4,7 @@ import java.util.List;
 public interface RoleDAO {
 	// 1건의 Role정보를 저장한다.
 	public int addRole(Role role);
-	// role_id에 해당하는 Role정보를 삭제한다.
+	//role_id에 해당하는 Role정보를 삭제한다.
 	public int deleteRole(int roleId);
 	// role_id에 해당하는 Role정보를 읽어온다.
 	public Role getRole(int roleId);
