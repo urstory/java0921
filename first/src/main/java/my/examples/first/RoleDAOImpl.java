@@ -7,10 +7,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class RoleDAOImpl implements RoleDAO{
+	@Autowired
+	DataSource ds;
+	
 	public RoleDAOImpl() {
 		System.out.println("RoleDaoImpl");
 	}
@@ -18,16 +24,12 @@ public class RoleDAOImpl implements RoleDAO{
 	@Override
 	public int addRole(Role role) {
 		int insertCount = 0;
-		
-		String dbUrl = "jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1";
-		String dbUserId = "sa";
-		String dbUserPassword = "";
+
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
-			conn = DriverManager.getConnection(dbUrl, dbUserId, dbUserPassword);
-		
+			conn = ds.getConnection();
 			String sql = "insert into ROLE(role_id, description) values(?, ?)";
 	
 			ps = conn.prepareStatement(sql);
@@ -48,15 +50,11 @@ public class RoleDAOImpl implements RoleDAO{
 	@Override
 	public int deleteRole(int roleId) {
 		int deleteCount = 0;
-		String dbUrl = "jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1";
-		String dbUserId = "sa";
-		String dbUserPassword = "";
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
-			conn = DriverManager.getConnection(dbUrl, dbUserId, dbUserPassword);
-		
+			conn = ds.getConnection();
 			String sql = "delete from ROLE where role_id = ?";
 	
 			ps = conn.prepareStatement(sql);
@@ -75,16 +73,12 @@ public class RoleDAOImpl implements RoleDAO{
 	@Override
 	public Role getRole(int roleId) {
 		Role role = null; 
-		String dbUrl = "jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1";
-		String dbUserId = "sa";
-		String dbUserPassword = "";
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(dbUrl, dbUserId, dbUserPassword);
-		
+			conn = ds.getConnection();
 			String sql = "SELECT role_id, description FROM ROLE WHERE role_id = ?";
 	
 			ps = conn.prepareStatement(sql);
@@ -112,16 +106,12 @@ public class RoleDAOImpl implements RoleDAO{
 	public List<Role> getRoles() {
 		List<Role> list = new ArrayList<>(); 
 		
-		String dbUrl = "jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1";
-		String dbUserId = "sa";
-		String dbUserPassword = "";
-		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			conn = DriverManager.getConnection(dbUrl, dbUserId, dbUserPassword);
-		
+			conn = ds.getConnection();
+			
 			String sql = "SELECT role_id, description FROM ROLE ORDER BY role_id";
 	
 			ps = conn.prepareStatement(sql);
@@ -148,14 +138,11 @@ public class RoleDAOImpl implements RoleDAO{
 	@Override
 	public int updateRole(Role role) {
 		int updateCount = 0;
-		String dbUrl = "jdbc:h2:tcp://localhost/~/test;DB_CLOSE_DELAY=-1";
-		String dbUserId = "sa";
-		String dbUserPassword = "";
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
-			conn = DriverManager.getConnection(dbUrl, dbUserId, dbUserPassword);
+			conn = ds.getConnection();
 		
 			String sql = "update ROLE set description = ? where role_id = ?";
 	

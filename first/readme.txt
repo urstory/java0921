@@ -23,6 +23,14 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<!-- 커넥션 풀 구현 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		
 
 2. Spring관련된 설정파일을 작성해야한다.
    Spring은 요즘 Java Config라는 방법으로 설정파일을 작성한다.
